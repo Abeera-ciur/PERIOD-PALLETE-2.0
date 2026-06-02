@@ -18,7 +18,41 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 inject_global_css()
-
+# Add this CSS fix for white text
+st.markdown("""
+<style>
+    /* Fix all white text issues */
+    .stTextInput label, 
+    .stSelectbox label,
+    .stDateInput label,
+    .stNumberInput label,
+    .stTextArea label,
+    .stMultiSelect label,
+    .stRadio label,
+    .stCheckbox label {
+        color: #000000 !important;
+        font-weight: 500 !important;
+    }
+    
+    .stTextInput input {
+        color: #000000 !important;
+        background-color: #ffffff !important;
+    }
+    
+    .stTextInput input::placeholder {
+        color: #666666 !important;
+    }
+    
+    div[data-testid="stTextInput"] label,
+    div[data-testid="stSelectbox"] label {
+        color: #000000 !important;
+    }
+    
+    .stTabs [data-baseweb="tab-list"] button p {
+        color: #000000 !important;
+    }
+</style>
+""", unsafe_allow_html=True)
 # If already logged in, redirect to dashboard
 if st.session_state.get("user"):
     st.switch_page("pages/Dashboard.py")
